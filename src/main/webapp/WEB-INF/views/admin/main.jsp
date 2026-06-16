@@ -197,3 +197,5 @@
 </div>
 
 <%@ include file="/WEB-INF/views/admin/common/footer.jsp" %>
+
+<!-- 깃허브 연동 테스트-->
