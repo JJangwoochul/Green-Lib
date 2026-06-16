@@ -1,4 +1,4 @@
-package com.example.greenlibrary.controller.admin;
+package com.example.greenlibrary.admin.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
