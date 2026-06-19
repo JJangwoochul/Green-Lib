@@ -11,39 +11,49 @@
 </div>
 
 <div class="sub-container">
-    <div class="book-search-box">
-        <div class="book-search-tabs">
-            <button class="stab active">통합검색</button>
-            <button class="stab">도서명</button>
-            <button class="stab">저자명</button>
-            <button class="stab">출판사</button>
-            <button class="stab">ISBN</button>
-        </div>
-        <div class="book-search-row">
-            <input type="text" class="book-search-input" placeholder="검색어를 입력하세요">
-            <button class="book-search-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
-                검색
-            </button>
-        </div>
-        <div class="popular-kw">
-            <span class="kw-label">인기검색어</span>
-            <span class="kw-tag"># 인공지능</span>
-            <span class="kw-tag"># 철학</span>
-            <span class="kw-tag"># 여행</span>
-            <span class="kw-tag"># 경제학</span>
-            <span class="kw-tag"># 소설</span>
-        </div>
-    </div>
 
+    <%-- ── 검색 박스 ── --%>
+    <form action="${contextPath}/book/search.do" method="get" id="searchForm">
+        <div class="book-search-box">
+            <div class="book-search-tabs">
+                <button type="button" class="stab ${searchType == 'all'       || searchType == '' ? 'active' : ''}" data-type="all">통합검색</button>
+                <button type="button" class="stab ${searchType == 'title'     ? 'active' : ''}" data-type="title">도서명</button>
+                <button type="button" class="stab ${searchType == 'author'    ? 'active' : ''}" data-type="author">저자명</button>
+                <button type="button" class="stab ${searchType == 'publisher' ? 'active' : ''}" data-type="publisher">출판사</button>
+                <button type="button" class="stab ${searchType == 'isbn'      ? 'active' : ''}" data-type="isbn">ISBN</button>
+            </div>
+            <%-- 검색 타입 hidden --%>
+            <input type="hidden" name="searchType" id="searchTypeInput" value="${searchType}">
+            <div class="book-search-row">
+                <input type="text" name="keyword" class="book-search-input"
+                       placeholder="검색어를 입력하세요" value="${keyword}">
+                <button type="submit" class="book-search-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    검색
+                </button>
+            </div>
+            <div class="popular-kw">
+                <span class="kw-label">인기검색어</span>
+                <span class="kw-tag" onclick="quickSearch('인공지능')"># 인공지능</span>
+                <span class="kw-tag" onclick="quickSearch('철학')"># 철학</span>
+                <span class="kw-tag" onclick="quickSearch('여행')"># 여행</span>
+                <span class="kw-tag" onclick="quickSearch('경제학')"># 경제학</span>
+                <span class="kw-tag" onclick="quickSearch('소설')"># 소설</span>
+            </div>
+        </div>
+    </form>
+
+    <%-- ── 목록 영역 ── --%>
     <div class="book-layout">
+
+        <%-- 사이드 필터 (장식용 - 추후 기능 확장 가능) --%>
         <aside class="book-filter">
             <div class="filter-section">
                 <p class="filter-title">자료유형</p>
                 <label class="filter-check"><input type="checkbox" checked> 단행본</label>
-                <label class="filter-check"><input type="checkbox" checked> 연속간행물</label>
+                <label class="filter-check"><input type="checkbox"> 연속간행물</label>
                 <label class="filter-check"><input type="checkbox"> 전자책</label>
                 <label class="filter-check"><input type="checkbox"> DVD/영상</label>
             </div>
@@ -64,89 +74,94 @@
             </div>
         </aside>
 
+        <%-- 검색 결과 --%>
         <div class="book-results">
             <div class="result-header">
-                <span class="result-count">총 <strong>128</strong>건의 검색결과</span>
+                <span class="result-count">
+                    총 <strong>${totalCount}</strong>건의 검색결과
+                    <c:if test="${keyword != null && keyword != ''}">
+                        <span style="color:var(--text-muted);font-weight:400;"> &nbsp;'${keyword}' 검색결과</span>
+                    </c:if>
+                </span>
                 <select class="result-sort">
-                    <option>관련도순</option><option>최신순</option><option>저자명순</option><option>제목순</option>
+                    <option>최신순</option>
+                    <option>도서명순</option>
+                    <option>저자명순</option>
                 </select>
             </div>
+
             <div class="book-list">
-                <div class="book-row">
-                    <div class="book-thumb"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=120&q=80" alt="표지"></div>
-                    <div class="book-info">
-                        <a href="${contextPath}/book/detail.do?bookId=1" class="book-row-title">숲의 시간 : 자연이 전하는 이야기</a>
-                        <p class="book-row-meta">저자 : 김민정 &nbsp;|&nbsp; 출판사 : 숲빛출판 &nbsp;|&nbsp; 발행연도 : 2024</p>
-                        <p class="book-row-meta">청구기호 : 811.37-김38ㅅ &nbsp;|&nbsp; 소장위치 : 1층 일반자료실</p>
-                        <span class="book-status available">대출가능</span>
-                    </div>
-                    <div class="book-row-actions">
-                        <a href="${contextPath}/book/detail.do?bookId=1" class="btn-outline-sm">상세보기</a>
-                        <a href="${contextPath}/loan/apply.do?bookId=1" class="btn-green-sm">대출신청</a>
-                    </div>
-                </div>
-                <div class="book-row">
-                    <div class="book-thumb"><img src="https://images.unsplash.com/photo-1569932245098-b04e4bab12f8?w=120&q=80" alt="표지"></div>
-                    <div class="book-info">
-                        <a href="${contextPath}/book/detail.do?bookId=2" class="book-row-title">지구를 위한 질문</a>
-                        <p class="book-row-meta">저자 : 이승우 &nbsp;|&nbsp; 출판사 : 녹색지식 &nbsp;|&nbsp; 발행연도 : 2024</p>
-                        <p class="book-row-meta">청구기호 : 539.9-이57ㅈ &nbsp;|&nbsp; 소장위치 : 2층 과학자료실</p>
-                        <span class="book-status available">대출가능</span>
-                    </div>
-                    <div class="book-row-actions">
-                        <a href="${contextPath}/book/detail.do?bookId=2" class="btn-outline-sm">상세보기</a>
-                        <a href="${contextPath}/loan/apply.do?bookId=2" class="btn-green-sm">대출신청</a>
-                    </div>
-                </div>
-                <div class="book-row">
-                    <div class="book-thumb"><img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=120&q=80" alt="표지"></div>
-                    <div class="book-info">
-                        <a href="${contextPath}/book/detail.do?bookId=3" class="book-row-title">오늘도, 성장 중</a>
-                        <p class="book-row-meta">저자 : 박지연 &nbsp;|&nbsp; 출판사 : 미래숲 &nbsp;|&nbsp; 발행연도 : 2023</p>
-                        <p class="book-row-meta">청구기호 : 325.211-박38ㅇ &nbsp;|&nbsp; 소장위치 : 1층 일반자료실</p>
-                        <span class="book-status unavailable">대출중 (반납예정 2024-05-15)</span>
-                    </div>
-                    <div class="book-row-actions">
-                        <a href="${contextPath}/book/detail.do?bookId=3" class="btn-outline-sm">상세보기</a>
-                        <a href="#" class="btn-outline-sm">예약신청</a>
-                    </div>
-                </div>
-                <div class="book-row">
-                    <div class="book-thumb"><img src="https://images.unsplash.com/photo-1487088678257-3a541e6e3922?w=120&q=80" alt="표지"></div>
-                    <div class="book-info">
-                        <a href="${contextPath}/book/detail.do?bookId=4" class="book-row-title">마음의 정말</a>
-                        <p class="book-row-meta">저자 : 최민호 &nbsp;|&nbsp; 출판사 : 마음터 &nbsp;|&nbsp; 발행연도 : 2023</p>
-                        <p class="book-row-meta">청구기호 : 189-최28ㅁ &nbsp;|&nbsp; 소장위치 : 2층 인문자료실</p>
-                        <span class="book-status available">대출가능</span>
-                    </div>
-                    <div class="book-row-actions">
-                        <a href="${contextPath}/book/detail.do?bookId=4" class="btn-outline-sm">상세보기</a>
-                        <a href="${contextPath}/loan/apply.do?bookId=4" class="btn-green-sm">대출신청</a>
-                    </div>
-                </div>
-                <div class="book-row">
-                    <div class="book-thumb"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=120&q=80" alt="표지"></div>
-                    <div class="book-info">
-                        <a href="${contextPath}/book/detail.do?bookId=5" class="book-row-title">인공지능과 미래 사회</a>
-                        <p class="book-row-meta">저자 : 정해원 &nbsp;|&nbsp; 출판사 : 테크비전 &nbsp;|&nbsp; 발행연도 : 2024</p>
-                        <p class="book-row-meta">청구기호 : 004.73-정12ㅇ &nbsp;|&nbsp; 소장위치 : 2층 과학자료실</p>
-                        <span class="book-status available">대출가능</span>
-                    </div>
-                    <div class="book-row-actions">
-                        <a href="${contextPath}/book/detail.do?bookId=5" class="btn-outline-sm">상세보기</a>
-                        <a href="${contextPath}/loan/apply.do?bookId=5" class="btn-green-sm">대출신청</a>
-                    </div>
-                </div>
+                <c:choose>
+                    <c:when test="${empty bookList}">
+                        <div class="no-result">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c0c0c0" stroke-width="1.2">
+                                <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <p>검색된 도서가 없습니다.</p>
+                            <span>다른 검색어로 다시 시도해보세요.</span>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="book" items="${bookList}">
+                            <div class="book-row">
+                                <div class="book-thumb">
+                                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=120&q=80" alt="${book.title} 표지">
+                                </div>
+                                <div class="book-info">
+                                    <a href="${contextPath}/book/detail.do?bookId=${book.bookId}" class="book-row-title">
+                                        ${book.title}
+                                    </a>
+                                    <p class="book-row-meta">
+                                        저자 : ${book.author}
+                                        &nbsp;|&nbsp; 출판사 : ${book.publisher}
+                                        &nbsp;|&nbsp; 발행연도 : ${book.pubYear}
+                                    </p>
+                                    <p class="book-row-meta">
+                                        청구기호 : ${book.callNo}
+                                        &nbsp;|&nbsp; 소장위치 : ${book.location}
+                                    </p>
+                                    <c:choose>
+                                        <c:when test="${book.availableCnt > 0}">
+                                            <span class="book-status available">대출가능 (${book.availableCnt}/${book.totalCnt})</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="book-status unavailable">대출중</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
+                                <div class="book-row-actions">
+                                    <a href="${contextPath}/book/detail.do?bookId=${book.bookId}" class="btn-outline-sm">상세보기</a>
+                                    <c:if test="${book.availableCnt > 0}">
+                                        <a href="${contextPath}/loan/apply.do?bookId=${book.bookId}" class="btn-green-sm">대출신청</a>
+                                    </c:if>
+                                    <c:if test="${book.availableCnt == 0}">
+                                        <a href="#" class="btn-outline-sm">예약신청</a>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
-            <div class="paging">
-                <a href="#" class="page-btn">&laquo;</a>
-                <a href="#" class="page-btn active">1</a>
-                <a href="#" class="page-btn">2</a>
-                <a href="#" class="page-btn">3</a>
-                <a href="#" class="page-btn">4</a>
-                <a href="#" class="page-btn">5</a>
-                <a href="#" class="page-btn">&raquo;</a>
-            </div>
+
+            <%-- 페이징 --%>
+            <c:if test="${totalPages > 0}">
+                <div class="paging">
+                    <c:if test="${currentPage > 1}">
+                        <a href="${contextPath}/book/search.do?page=${currentPage-1}&keyword=${keyword}&searchType=${searchType}"
+                           class="page-btn">&laquo;</a>
+                    </c:if>
+                    <c:forEach begin="1" end="${totalPages}" var="p">
+                        <a href="${contextPath}/book/search.do?page=${p}&keyword=${keyword}&searchType=${searchType}"
+                           class="page-btn ${p == currentPage ? 'active' : ''}">${p}</a>
+                    </c:forEach>
+                    <c:if test="${currentPage < totalPages}">
+                        <a href="${contextPath}/book/search.do?page=${currentPage+1}&keyword=${keyword}&searchType=${searchType}"
+                           class="page-btn">&raquo;</a>
+                    </c:if>
+                </div>
+            </c:if>
+
         </div>
     </div>
 </div>
@@ -171,7 +186,6 @@
 .filter-title{font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:10px;}
 .filter-check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);margin-bottom:8px;cursor:pointer;}
 .filter-check input{accent-color:var(--green-deep);}
-.book-results{}
 .result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
 .result-count{font-size:14px;color:var(--text-mid);}
 .result-count strong{color:var(--green-deep);font-weight:700;}
@@ -196,14 +210,26 @@
 .paging{display:flex;justify-content:center;gap:6px;margin-top:40px;}
 .page-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-mid);text-decoration:none;transition:all .18s;}
 .page-btn:hover,.page-btn.active{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+.no-result{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 0;gap:12px;}
+.no-result p{font-size:16px;font-weight:600;color:var(--text-muted);}
+.no-result span{font-size:13px;color:var(--text-muted);}
 </style>
+
 <script>
-document.querySelectorAll('.stab').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
+// 검색 탭 클릭 → hidden input 값 변경
+document.querySelectorAll('.stab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        document.getElementById('searchTypeInput').value = btn.dataset.type;
     });
 });
+
+// 인기검색어 클릭
+function quickSearch(keyword) {
+    document.querySelector('input[name="keyword"]').value = keyword;
+    document.getElementById('searchForm').submit();
+}
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

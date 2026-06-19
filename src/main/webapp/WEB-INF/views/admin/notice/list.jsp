@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="currentMenu" value="notice" scope="request"/>
+
 <%@ include file="/WEB-INF/views/admin/common/header.jsp" %>
 
 <div class="admin-page-header">
     <div>
         <h1 class="admin-page-title">공지사항 관리</h1>
-        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main.do">대시보드</a> &gt; 공지사항</p>
+        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main/main.do">대시보드</a> &gt; 공지사항</p>
     </div>
     <a href="${contextPath}/admin/notice/write.do" class="btn-green">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -52,7 +54,7 @@
                     <td class="td-center">2024-05-01</td>
                     <td class="td-center">
                         <a href="${contextPath}/admin/notice/edit.do?noticeId=15" class="btn-outline btn-sm">수정</a>
-                        <button onclick="deleteNotice(15)" class="btn-red btn-sm" style="margin-left:4px;">삭제</button>
+                        <button onclick="deleteNotice(15)" class="btn-red btn-sm" style="margin-top:4px;">삭제</button>
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +66,7 @@
                     <td class="td-center">2024-04-28</td>
                     <td class="td-center">
                         <a href="${contextPath}/admin/notice/edit.do?noticeId=14" class="btn-outline btn-sm">수정</a>
-                        <button onclick="deleteNotice(14)" class="btn-red btn-sm" style="margin-left:4px;">삭제</button>
+                        <button onclick="deleteNotice(14)" class="btn-red btn-sm" style="margin-top:4px;">삭제</button>
                     </td>
                 </tr>
                 <tr>
@@ -76,7 +78,7 @@
                     <td class="td-center">2024-04-30</td>
                     <td class="td-center">
                         <a href="${contextPath}/admin/notice/edit.do?noticeId=13" class="btn-outline btn-sm">수정</a>
-                        <button onclick="deleteNotice(13)" class="btn-red btn-sm" style="margin-left:4px;">삭제</button>
+                        <button onclick="deleteNotice(13)" class="btn-red btn-sm" style="margin-top:4px;">삭제</button>
                     </td>
                 </tr>
                 <tr>
@@ -88,7 +90,7 @@
                     <td class="td-center">2024-04-20</td>
                     <td class="td-center">
                         <a href="${contextPath}/admin/notice/edit.do?noticeId=12" class="btn-outline btn-sm">수정</a>
-                        <button onclick="deleteNotice(12)" class="btn-red btn-sm" style="margin-left:4px;">삭제</button>
+                        <button onclick="deleteNotice(12)" class="btn-red btn-sm" style="margin-top:4px;">삭제</button>
                     </td>
                 </tr>
             </tbody>

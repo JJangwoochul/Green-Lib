@@ -22,7 +22,7 @@
                 <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
         </button>
-        <a href="${contextPath}/admin/main.do" class="admin-logo">
+        <a href="${contextPath}/admin/main/main.do" class="admin-logo">
             <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
                 <rect x="5" y="8" width="12" height="20" rx="2" fill="#4a7c40"/>
                 <rect x="6" y="9" width="10" height="18" rx="1.5" fill="#6fa35a"/>
@@ -62,7 +62,7 @@
     <nav class="sidebar-nav">
 
         <div class="sidebar-section-label">대시보드</div>
-        <a href="${contextPath}/admin/main.do" class="sidebar-link ${currentMenu == 'dashboard' ? 'active' : ''}">
+        <a href="${contextPath}/admin/main/main.do" class="sidebar-link ${currentMenu == 'dashboard' ? 'active' : ''}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
                 <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>

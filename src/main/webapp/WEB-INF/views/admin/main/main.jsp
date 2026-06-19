@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="currentMenu" value="dashboard" scope="request"/>
+
 <%@ include file="/WEB-INF/views/admin/common/header.jsp" %>
 
 <!-- 페이지 헤더 -->
@@ -197,5 +199,3 @@
 </div>
 
 <%@ include file="/WEB-INF/views/admin/common/footer.jsp" %>
-
-<!-- 깃허브 연동 테스트-->

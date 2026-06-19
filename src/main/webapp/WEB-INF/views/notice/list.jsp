@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <div class="sub-banner">
@@ -68,35 +70,35 @@
 </div>
 
 <style>
-.notice-search-row{display:flex;gap:8px;margin-bottom:20px;justify-content:flex-end;}
-.ns-select{border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-mid);outline:none;}
-.ns-input{border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-size:13px;font-family:'Noto Sans KR',sans-serif;outline:none;width:220px;transition:border .18s;}
-.ns-input:focus{border-color:var(--green-mid);}
-.ns-btn{background:var(--green-deep);color:#fff;border:none;border-radius:var(--radius-sm);padding:8px 20px;font-size:13px;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
-.notice-cats{display:flex;gap:6px;margin-bottom:20px;}
-.ncat{background:none;border:1px solid var(--border);border-radius:50px;padding:6px 18px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-mid);cursor:pointer;transition:all .18s;}
-.ncat.active,.ncat:hover{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
-.notice-table{width:100%;border-collapse:collapse;margin-bottom:32px;}
-.notice-table th{background:var(--green-pale);padding:14px 20px;font-size:13px;font-weight:600;color:var(--text-mid);border-top:2px solid var(--green-deep);border-bottom:1px solid var(--border);text-align:center;}
-.notice-table td{padding:14px 20px;font-size:13px;color:var(--text-primary);border-bottom:1px solid var(--border);text-align:center;}
-.notice-table td:nth-child(2){text-align:left;}
-.notice-table tr:hover td{background:#f9fdf7;}
-.notice-fixed td{background:#f4faf0;}
-.notice-badge{background:var(--green-deep);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
-.notice-link{text-decoration:none;color:var(--text-primary);transition:color .18s;}
-.notice-link:hover{color:var(--green-deep);}
-.new-badge{background:#e8f5e1;color:var(--green-deep);font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px;}
-.paging{display:flex;justify-content:center;gap:6px;}
-.page-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-mid);text-decoration:none;transition:all .18s;}
-.page-btn:hover,.page-btn.active{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+    .notice-search-row{display:flex;gap:8px;margin-bottom:20px;justify-content:flex-end;}
+    .ns-select{border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-mid);outline:none;}
+    .ns-input{border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;font-size:13px;font-family:'Noto Sans KR',sans-serif;outline:none;width:220px;transition:border .18s;}
+    .ns-input:focus{border-color:var(--green-mid);}
+    .ns-btn{background:var(--green-deep);color:#fff;border:none;border-radius:var(--radius-sm);padding:8px 20px;font-size:13px;font-weight:600;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+    .notice-cats{display:flex;gap:6px;margin-bottom:20px;}
+    .ncat{background:none;border:1px solid var(--border);border-radius:50px;padding:6px 18px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text-mid);cursor:pointer;transition:all .18s;}
+    .ncat.active,.ncat:hover{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+    .notice-table{width:100%;border-collapse:collapse;margin-bottom:32px;}
+    .notice-table th{background:var(--green-pale);padding:14px 20px;font-size:13px;font-weight:600;color:var(--text-mid);border-top:2px solid var(--green-deep);border-bottom:1px solid var(--border);text-align:center;}
+    .notice-table td{padding:14px 20px;font-size:13px;color:var(--text-primary);border-bottom:1px solid var(--border);text-align:center;}
+    .notice-table td:nth-child(2){text-align:left;}
+    .notice-table tr:hover td{background:#f9fdf7;}
+    .notice-fixed td{background:#f4faf0;}
+    .notice-badge{background:var(--green-deep);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
+    .notice-link{text-decoration:none;color:var(--text-primary);transition:color .18s;}
+    .notice-link:hover{color:var(--green-deep);}
+    .new-badge{background:#e8f5e1;color:var(--green-deep);font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px;}
+    .paging{display:flex;justify-content:center;gap:6px;}
+    .page-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text-mid);text-decoration:none;transition:all .18s;}
+    .page-btn:hover,.page-btn.active{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
 </style>
 <script>
-document.querySelectorAll('.ncat').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        document.querySelectorAll('.ncat').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
+    document.querySelectorAll('.ncat').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.ncat').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+        });
     });
-});
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -7,7 +7,7 @@
 <div class="admin-page-header">
     <div>
         <h1 class="admin-page-title">회원 목록</h1>
-        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main.do">대시보드</a> &gt; 회원 관리 &gt; 회원 목록</p>
+        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main/main.do">대시보드</a> &gt; 회원 관리 &gt; 회원 목록</p>
     </div>
     
 </div>

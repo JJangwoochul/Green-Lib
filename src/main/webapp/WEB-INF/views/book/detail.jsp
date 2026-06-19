@@ -221,6 +221,3 @@
 </style>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
-<!-- 커밋메세지 테스트 -->

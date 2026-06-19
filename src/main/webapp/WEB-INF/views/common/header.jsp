@@ -35,8 +35,8 @@
                 <line x1="17" y1="6" x2="17" y2="9" stroke="#2d5a27" stroke-width="1" stroke-linecap="round"/>
             </svg>
             <div class="logo-text">
-                <span class="main-name">푸른숲 도서관</span>
-                <span class="sub-name">GREEN FOREST LIBRARY</span>
+                <span class="main-name">그린 도서관</span>
+                <span class="sub-name">GREEN LIBRARY</span>
             </div>
         </a>
         <nav>

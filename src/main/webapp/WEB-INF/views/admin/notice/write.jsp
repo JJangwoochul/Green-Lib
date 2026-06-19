@@ -7,7 +7,7 @@
 <div class="admin-page-header">
     <div>
         <h1 class="admin-page-title">공지사항 등록</h1>
-        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main.do">대시보드</a> &gt; <a href="${contextPath}/admin/notice/list.do">공지사항</a> &gt; 등록</p>
+        <p class="admin-breadcrumb"><a href="${contextPath}/admin/main/main.do">대시보드</a> &gt; <a href="${contextPath}/admin/notice/list.do">공지사항</a> &gt; 등록</p>
     </div>
 </div>
 
