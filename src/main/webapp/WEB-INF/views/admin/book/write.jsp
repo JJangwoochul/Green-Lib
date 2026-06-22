@@ -37,12 +37,47 @@
 <%-- 도서 등록/수정 폼 --%>
 <div class="admin-card">
     <%-- 수정이면 editProc.do, 등록이면 writeProc.do --%>
-    <form action="${contextPath}/admin/book/${isEdit ? 'editProc' : 'writeProc'}.do" method="post" id="bookForm">
+    <form action="${contextPath}/admin/book/${isEdit ? 'editProc' : 'writeProc'}.do"
+          method="post" id="bookForm" enctype="multipart/form-data">
 
         <%-- 수정 모드일 때 bookId를 hidden으로 전송 --%>
         <c:if test="${isEdit}">
             <input type="hidden" name="bookId" value="${book.bookId}">
         </c:if>
+
+        <%-- 이미지 업로드 영역 --%>
+        <div class="book-img-upload-wrap">
+            <div class="book-cover-upload" id="coverUploadBox"
+                 onclick="document.getElementById('coverImg').click()">
+                <img id="coverPreview" alt="표지 미리보기"
+                     src="${not empty book.imgPath ? contextPath.concat('/resources/upload/').concat(book.imgPath) : ''}"
+                     style="display:${not empty book.imgPath ? 'block' : 'none'};width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm);">
+                <div id="coverPlaceholder"
+                     style="display:${not empty book.imgPath ? 'none' : 'flex'};flex-direction:column;align-items:center;gap:10px;color:var(--text-muted);">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span style="font-size:13px;font-weight:600;">표지 이미지 업로드</span>
+                    <span style="font-size:11px;">클릭하여 파일 선택</span>
+                </div>
+            </div>
+            <input type="file" id="coverImg" name="coverImg"
+                   accept="image/jpeg,image/png,image/gif,image/webp"
+                   style="display:none;" onchange="previewCover(this)">
+            <div class="book-img-upload-guide">
+                <p>• JPG, PNG, GIF, WEBP 형식</p>
+                <p>• 최대 파일 크기 : 5MB</p>
+                <p>• 권장 비율 : 3:4 (세로형)</p>
+                <c:if test="${not empty book.imgPath}">
+                    <label style="display:flex;align-items:center;gap:6px;margin-top:8px;cursor:pointer;font-size:12px;color:#c0392b;">
+                        <input type="checkbox" name="imgDelete" value="Y" style="accent-color:#c0392b;">
+                        기존 이미지 삭제
+                    </label>
+                </c:if>
+            </div>
+        </div>
 
         <div class="admin-form-grid">
 
@@ -131,127 +166,190 @@
 
     </form>
 </div>
-
 <style>
-.isbn-guide-box {
-    background: var(--green-pale);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green-deep);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-    margin-bottom: 24px;
-}
-.isbn-guide-box strong {
-    display: block;
-    font-size: 14px;
-    color: var(--green-deep);
-    margin-bottom: 6px;
-}
-.isbn-guide-box p {
-    font-size: 13px;
-    color: var(--text-mid);
-    margin-bottom: 14px;
-}
-.isbn-input-row {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.isbn-input-row input {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    font-size: 14px;
-    font-family: 'Noto Sans KR', sans-serif;
-    outline: none;
-    width: 280px;
-    transition: border .15s;
-}
-.isbn-input-row input:focus { border-color: var(--green-mid); }
-.isbn-input-row button {
-    background: var(--green-deep);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 10px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    transition: background .15s;
-    white-space: nowrap;
-}
-.isbn-input-row button:hover { background: var(--green-mid); }
-.isbn-input-row button:disabled { background: var(--border); cursor: not-allowed; }
-#isbnStatus { font-size: 13px; font-weight: 600; }
-#isbnStatus.success { color: var(--green-deep); }
-#isbnStatus.error   { color: #c0392b; }
-#isbnStatus.loading { color: var(--text-muted); }
+    /* 이미지 업로드 */
+    .book-img-upload-wrap {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        margin-bottom: 24px;
+    }
+    .book-cover-upload {
+        width: 140px;
+        height: 188px;
+        flex-shrink: 0;
+        border: 2px dashed var(--border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: border-color .18s, background .18s;
+        position: relative;
+    }
+    .book-cover-upload:hover {
+        border-color: var(--green-mid);
+        background: var(--green-pale);
+    }
+    .book-img-upload-guide {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-top: 4px;
+    }
+    .book-img-upload-guide p {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+    .isbn-guide-box {
+        background: var(--green-pale);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--green-deep);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        margin-bottom: 24px;
+    }
+    .isbn-guide-box strong {
+        display: block;
+        font-size: 14px;
+        color: var(--green-deep);
+        margin-bottom: 6px;
+    }
+    .isbn-guide-box p {
+        font-size: 13px;
+        color: var(--text-mid);
+        margin-bottom: 14px;
+    }
+    .isbn-input-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .isbn-input-row input {
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 10px 14px;
+        font-size: 14px;
+        font-family: 'Noto Sans KR', sans-serif;
+        outline: none;
+        width: 280px;
+        transition: border .15s;
+    }
+    .isbn-input-row input:focus { border-color: var(--green-mid); }
+    .isbn-input-row button {
+        background: var(--green-deep);
+        color: #fff;
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: 10px 20px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: 'Noto Sans KR', sans-serif;
+        cursor: pointer;
+        transition: background .15s;
+        white-space: nowrap;
+    }
+    .isbn-input-row button:hover { background: var(--green-mid); }
+    .isbn-input-row button:disabled { background: var(--border); cursor: not-allowed; }
+    #isbnStatus { font-size: 13px; font-weight: 600; }
+    #isbnStatus.success { color: var(--green-deep); }
+    #isbnStatus.error   { color: #c0392b; }
+    #isbnStatus.loading { color: var(--text-muted); }
 </style>
 
 <script>
-async function fetchBookInfo() {
-    const isbn   = document.getElementById('isbnInput').value.trim();
-    const status = document.getElementById('isbnStatus');
-    const btn    = document.getElementById('isbnSearchBtn');
+    // 이미지 미리보기
+    function previewCover(input) {
+        const file    = input.files[0];
+        const preview = document.getElementById('coverPreview');
+        const holder  = document.getElementById('coverPlaceholder');
 
-    if (!isbn) {
-        status.textContent = "ISBN을 입력해주세요.";
-        status.className   = "error";
-        return;
+        if (!file) return;
+
+        // 파일 크기 체크 (5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('파일 크기가 5MB를 초과합니다.');
+            input.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            holder.style.display  = 'none';
+        };
+        reader.readAsDataURL(file);
     }
-    if (isbn.length !== 13 || isNaN(isbn)) {
-        status.textContent = "ISBN은 숫자 13자리로 입력해주세요.";
-        status.className   = "error";
-        return;
-    }
 
-    btn.disabled       = true;
-    status.textContent = "조회 중...";
-    status.className   = "loading";
+    async function fetchBookInfo() {
+        const isbn   = document.getElementById('isbnInput').value.trim();
+        const status = document.getElementById('isbnStatus');
+        const btn    = document.getElementById('isbnSearchBtn');
 
-    try {
-        const response = await fetch('/admin/book/isbn.do?isbn=' + isbn);
-        const data     = await response.json();
-
-        if (!data.success) {
-            status.textContent = data.message || "도서 정보를 찾을 수 없습니다.";
+        if (!isbn) {
+            status.textContent = "ISBN을 입력해주세요.";
+            status.className   = "error";
+            return;
+        }
+        if (isbn.length !== 13 || isNaN(isbn)) {
+            status.textContent = "ISBN은 숫자 13자리로 입력해주세요.";
             status.className   = "error";
             return;
         }
 
-        setValue('title',     data.title);
-        setValue('author',    data.author);
-        setValue('publisher', data.publisher);
-        setValue('pubYear',   data.pubYear);
-        setValue('isbn',      data.isbn || isbn);
+        btn.disabled       = true;
+        status.textContent = "조회 중...";
+        status.className   = "loading";
 
-        status.textContent = "✅ 도서 정보를 불러왔습니다. 내용을 확인 후 저장하세요.";
-        status.className   = "success";
+        try {
+            const response = await fetch('/admin/book/isbn.do?isbn=' + isbn);
+            const data     = await response.json();
 
-    } catch (e) {
-        status.textContent = "오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
-        status.className   = "error";
-        console.error(e);
-    } finally {
-        btn.disabled = false;
-    }
-}
+            if (!data.success) {
+                status.textContent = data.message || "도서 정보를 찾을 수 없습니다.";
+                status.className   = "error";
+                return;
+            }
 
-function setValue(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.value = value || '';
-}
+            setValue('title',     data.title);
+            setValue('author',    data.author);
+            setValue('publisher', data.publisher);
+            setValue('pubYear',   data.pubYear);
+            setValue('isbn',      data.isbn || isbn);
 
-const isbnInput = document.getElementById('isbnInput');
-if (isbnInput) {
-    isbnInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            fetchBookInfo();
+            status.textContent = "✅ 도서 정보를 불러왔습니다. 내용을 확인 후 저장하세요.";
+            status.className   = "success";
+
+        } catch (e) {
+            status.textContent = "오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
+            status.className   = "error";
+            console.error(e);
+        } finally {
+            btn.disabled = false;
         }
-    });
-}
+    }
+
+    function setValue(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.value = value || '';
+    }
+
+    const isbnInput = document.getElementById('isbnInput');
+    if (isbnInput) {
+        isbnInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                fetchBookInfo();
+            }
+        });
+    }
 </script>
 
 <%@ include file="/WEB-INF/views/admin/common/footer.jsp" %>

@@ -11,5 +11,10 @@ public class AdminMemberController {
     @GetMapping("/list.do")
     public String memberList() {
         return "admin/member/list";
-    }    
+    }
+    
+    @GetMapping("/detail.do")
+    public String adminMemberDetail() { 
+        return "admin/member/detail"; 
+    }
 }

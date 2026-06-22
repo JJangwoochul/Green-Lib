@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"  />
  
 <body>    
 <div class="quick-section">
     <div class="quick-card">
-        <a href="#" class="quick-item">
+        <a href="${contextPath}/book/list.do" class="quick-item">
             <!-- 도서검색 아이콘 -->
             <svg class="quick-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="8" y="10" width="22" height="28" rx="3" fill="#e8f2e4" stroke="#4a7c40" stroke-width="1.8"/>
@@ -22,7 +22,7 @@
             </div>
             <span class="quick-arrow">→</span>
         </a>
-        <a href="#" class="quick-item">
+        <a href="${contextPath}/mypage/loan.do" class="quick-item">
             <!-- 대출조회 아이콘 -->
             <svg class="quick-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="7" y="12" width="16" height="24" rx="2.5" fill="#e8f2e4" stroke="#4a7c40" stroke-width="1.8"/>
@@ -37,7 +37,7 @@
             </div>
             <span class="quick-arrow">→</span>
         </a>
-        <a href="#" class="quick-item">
+        <a href="${contextPath}/book/wish.do" class="quick-item">
             <!-- 희망도서신청 아이콘 -->
             <svg class="quick-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="8" y="8" width="28" height="32" rx="3" fill="#e8f2e4" stroke="#4a7c40" stroke-width="1.8"/>

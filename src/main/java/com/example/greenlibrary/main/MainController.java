@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller("mainController")
 public class MainController {
+    /* ── 임시 매핑 - 각 Controller 생성 전까지 ── */
     
     // http://localhost:8080/main/main.do
     @GetMapping("/main/main.do")
@@ -52,4 +53,28 @@ public class MainController {
     public String noticelist() {
         return "notice/list";
     }
+
+    @GetMapping("/info/guide.do")
+    public String guidelist() {
+        return "info/guide";
+    }
+
+    /* ── 마이페이지 ── */
+    @GetMapping("/mypage/loan.do")
+    public String mypageLoan() { return "mypage/loan"; }
+
+    @GetMapping("/mypage/wish.do")
+    public String mypageWish() { return "mypage/wish"; }
+
+    @GetMapping("/mypage/interest.do")
+    public String mypageInterest() { return "mypage/interest"; }
+
+    @GetMapping("/mypage/message.do")
+    public String mypageMessage() { return "mypage/message"; }
+
+    @GetMapping("/mypage/goal.do")
+    public String mypageGoal() { return "mypage/goal"; }
+
+    @GetMapping("/mypage/edit.do")
+    public String mypageEdit() { return "mypage/edit"; }
 }
