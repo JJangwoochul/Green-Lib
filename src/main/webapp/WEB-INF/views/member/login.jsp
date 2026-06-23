@@ -7,7 +7,7 @@
     <div class="sub-banner-inner">
         <div class="sub-banner-left">
             <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 로그인</p>
-            <h2 class="sub-title">로그인</h2>
+            <h2 class="sub-title">🔐 로그인</h2>
         </div>
     </div>
 </div>

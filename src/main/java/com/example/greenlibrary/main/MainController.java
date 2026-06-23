@@ -39,6 +39,16 @@ public class MainController {
         return "member/join";
     }
 
+    @GetMapping("/member/joinForm.do")
+    public String joinForm() {
+        return "member/joinForm";
+    }
+
+    @GetMapping("/member/joinComplete.do")
+    public String joinComplete() {
+        return "member/joinComplete";
+    }
+
     @GetMapping("/mypage/main.do")
     public String mypage() {
         return "mypage/main";

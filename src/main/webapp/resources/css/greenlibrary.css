@@ -159,6 +159,7 @@ nav a:hover { background: var(--green-pale); color: var(--green-deep); }
 .notice-item:hover .notice-text { color: var(--green-deep); }
 .notice-text  { font-size: 13px; color: var(--text-mid); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .18s; }
 .notice-date  { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+.new-books {} 
 .books-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 16px; }
 .book-card  { cursor: pointer; }
 .book-cover { width: 100%; aspect-ratio: 3/4; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 10px; }
@@ -172,14 +173,51 @@ nav a:hover { background: var(--green-pale); color: var(--green-deep); }
 
 /* ── SUB PAGE 공통 ── */
 .sub-banner {
-    /* background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%); */
-    padding: 52px 0 48px;
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    padding: 24px 0 22px;
+    position: relative;
+    overflow: hidden;
 }
-.sub-banner-inner { width: 100%; padding: 0 60px; }
-.sub-breadcrumb { font-size: 12px; color: rgba(255,255,255,.65); margin-bottom: 10px; letter-spacing: .2px; }
-/* .sub-title { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -.3px; } */
-.sub-title { font-size: 50px; font-weight: 700; color: var(--green-deep); letter-spacing: -.3px;}
-
+.sub-banner::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.05);
+}
+.sub-banner::after {
+    content: '';
+    position: absolute;
+    right: 80px; bottom: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+}
+.sub-banner-inner {
+    width: 100%; padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; z-index: 1;
+}
+.sub-banner-left {}
+.sub-breadcrumb {
+    font-size: 11px;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 5px;
+    letter-spacing: .2px;
+    display: flex; align-items: center; gap: 4px;
+}
+.sub-breadcrumb a { color: rgba(255,255,255,.55); text-decoration: none; }
+.sub-breadcrumb a:hover { color: rgba(255,255,255,.9); }
+.sub-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.4px;
+    line-height: 1.2;
+}
 .sub-container {
     width: 100%;
     padding: 48px 60px 80px;
@@ -258,3 +296,59 @@ footer { background: #f1f7ee; border-top: 1px solid var(--border); padding: 32px
 .dday-badge.safe    { background: #e8f5e1; color: #2d5a27; }
 .dday-badge.warning { background: #fff7e1; color: #c07800; }
 .dday-badge.danger  { background: #fce8e8; color: #c0392b; }
+
+/* ── 회원가입 공통 ── */
+.join-wrap         { max-width: 680px; margin: 0 auto; }
+.join-steps        { display: flex; align-items: center; justify-content: center; margin-bottom: 36px; }
+.step              { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.step-num          { width: 34px; height: 34px; border-radius: 50%; background: var(--border);
+                     color: var(--text-muted); font-size: 13px; font-weight: 700;
+                     display: flex; align-items: center; justify-content: center; transition: all .3s; }
+.step.active .step-num  { background: var(--green-deep); color: #fff; }
+.step.done .step-num    { background: var(--green-light); color: #fff; }
+.step-txt               { font-size: 12px; color: var(--text-muted); }
+.step.active .step-txt  { color: var(--green-deep); font-weight: 700; }
+.step.done .step-txt    { color: var(--green-light); }
+.step-line         { flex: 1; height: 2px; background: var(--border);
+                     margin: 0 10px; max-width: 100px; margin-bottom: 18px; }
+.step-line.done    { background: var(--green-light); }
+
+.join-card         { background: var(--bg-card); border: 1px solid var(--border);
+                     border-radius: var(--radius-md); padding: 40px 44px; }
+.join-card-title   { font-size: 16px; font-weight: 700; color: var(--text-primary);
+                     margin-bottom: 24px; padding-bottom: 14px;
+                     border-bottom: 2px solid var(--green-deep); }
+
+.join-form-group   { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+.join-form-row     { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.join-label        { font-size: 13px; font-weight: 600; color: var(--text-mid); }
+.join-required     { color: #c0392b; margin-left: 2px; }
+.join-input        { border: 1px solid var(--border); border-radius: var(--radius-sm);
+                     padding: 12px 16px; font-size: 14px; font-family: 'Noto Sans KR', sans-serif;
+                     outline: none; transition: border .18s, box-shadow .18s; width: 100%; }
+.join-input:focus  { border-color: var(--green-mid);
+                     box-shadow: 0 0 0 3px rgba(74,124,64,.08); }
+.join-input.error  { border-color: #c0392b; }
+.join-hint         { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.join-hint.ok      { color: var(--green-deep); }
+.join-hint.error   { color: #c0392b; }
+
+.join-input-row    { display: flex; gap: 8px; }
+.join-input-row .join-input { flex: 1; }
+.join-btn-check    { background: var(--green-deep); color: #fff; border: none;
+                     border-radius: var(--radius-sm); padding: 0 18px;
+                     font-size: 13px; font-weight: 600; font-family: 'Noto Sans KR', sans-serif;
+                     cursor: pointer; white-space: nowrap; transition: background .18s; }
+.join-btn-check:hover { background: var(--green-mid); }
+
+.join-actions      { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+.join-btn-next     { background: var(--green-deep); color: #fff; border: none;
+                     border-radius: var(--radius-sm); padding: 13px 36px;
+                     font-size: 14px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif;
+                     cursor: pointer; transition: background .18s; }
+.join-btn-next:hover  { background: var(--green-mid); }
+.join-btn-prev     { border: 1px solid var(--border); color: var(--text-mid); background: none;
+                     border-radius: var(--radius-sm); padding: 13px 28px;
+                     font-size: 14px; font-weight: 500; font-family: 'Noto Sans KR', sans-serif;
+                     cursor: pointer; text-decoration: none; display: inline-block; transition: all .18s; }
+.join-btn-prev:hover  { border-color: var(--green-mid); color: var(--green-deep); }
