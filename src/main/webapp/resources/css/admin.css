@@ -2,7 +2,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --sidebar-w:     220px;
+    --sidebar-w:     200px;
     --header-h:      60px;
     --green-deep:    #2d5a27;
     --green-mid:     #4a7c40;
@@ -43,7 +43,7 @@ body {
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 40px;
     box-shadow: var(--shadow-sm);
 }
 .admin-header-left  { display: flex; align-items: center; gap: 16px; }
@@ -133,7 +133,7 @@ body {
     margin-top: var(--header-h);
     min-height: calc(100vh - var(--header-h));
     transition: margin-left .2s ease;
-    padding: 32px;
+    padding: 36px 60px;
 }
 .admin-content-wrap.expanded { margin-left: 0; }
 
@@ -296,7 +296,7 @@ body {
 /* ── 푸터 ── */
 .admin-footer {
     margin-left: var(--sidebar-w); text-align: center;
-    padding: 20px; font-size: 11px; color: var(--text-muted);
+    padding: 20px 48px; font-size: 11px; color: var(--text-muted);
     border-top: 1px solid var(--border); transition: margin-left .2s;
 }
 

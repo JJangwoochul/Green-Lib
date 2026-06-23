@@ -5,8 +5,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 도서검색</p>
-        <h2 class="sub-title">도서검색</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 도서검색</p>
+            <h2 class="sub-title">도서검색</h2>
+        </div>
     </div>
 </div>
 

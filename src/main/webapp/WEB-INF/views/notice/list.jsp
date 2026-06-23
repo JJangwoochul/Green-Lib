@@ -5,8 +5,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 공지사항</p>
-        <h2 class="sub-title">공지사항</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 공지사항</p>
+            <h2 class="sub-title">공지사항</h2>
+        </div>
     </div>
 </div>
 
@@ -42,7 +44,7 @@
                 <td class="td-center"><span class="notice-badge">공지</span></td>
                 <td>
                     <a href="${contextPath}/notice/detail.do?noticeId=1" class="notice-link">
-                        📌 2024년 도서관 연간 운영 일정 안내
+                        2024년 도서관 연간 운영 일정 안내
                     </a>
                 </td>
                 <td class="td-center">관리자</td>
@@ -52,7 +54,7 @@
                 <td class="td-center"><span class="notice-badge">공지</span></td>
                 <td>
                     <a href="${contextPath}/notice/detail.do?noticeId=2" class="notice-link">
-                        📌 도서관 이용 규정 개정 안내
+                        도서관 이용 규정 개정 안내
                     </a>
                 </td>
                 <td class="td-center">관리자</td>

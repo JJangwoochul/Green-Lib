@@ -6,8 +6,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 마이페이지</p>
-        <h2 class="sub-title">마이페이지</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 마이페이지</p>
+            <h2 class="sub-title">마이페이지</h2>
+        </div>
     </div>
 </div>
 
@@ -18,7 +20,7 @@
         <div class="mypage-content">
 
             <!-- 요약 카드 -->
-            <%-- <div class="my-summary">
+            <div class="my-summary">
                 <div class="my-sum-card">
                     <span class="msc-icon">📚</span>
                     <span class="msc-num">3</span>
@@ -43,7 +45,7 @@
                     <span class="msc-label">관심도서</span>
                     <a href="${contextPath}/mypage/interest.do" class="msc-link">바로가기 →</a>
                 </div>
-            </div> --%>
+            </div>
 
             <!-- 현재 대출 도서 -->
             <div class="my-section">

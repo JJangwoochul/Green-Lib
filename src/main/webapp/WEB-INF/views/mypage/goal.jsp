@@ -6,8 +6,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 마이페이지 &gt; 독서 목표</p>
-        <h2 class="sub-title">독서 목표</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 마이페이지 <span style="opacity:.4;">›</span> 독서 목표</p>
+            <h2 class="sub-title">독서 목표</h2>
+        </div>
     </div>
 </div>
 

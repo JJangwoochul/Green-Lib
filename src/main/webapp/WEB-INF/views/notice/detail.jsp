@@ -5,8 +5,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 공지사항 &gt; 상세보기</p>
-        <h2 class="sub-title">공지사항</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 공지사항 <span style="opacity:.4;">›</span> 상세보기</p>
+            <h2 class="sub-title">공지사항</h2>
+        </div>
     </div>
 </div>
 

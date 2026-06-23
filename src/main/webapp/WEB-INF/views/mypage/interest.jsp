@@ -6,8 +6,10 @@
 
 <div class="sub-banner">
     <div class="sub-banner-inner">
-        <p class="sub-breadcrumb">홈 &gt; 마이페이지 &gt; 관심도서</p>
-        <h2 class="sub-title">관심도서</h2>
+        <div class="sub-banner-left">
+            <p class="sub-breadcrumb">홈 <span style="opacity:.4;">›</span> 마이페이지 <span style="opacity:.4;">›</span> 관심도서</p>
+            <h2 class="sub-title">관심도서</h2>
+        </div>
     </div>
 </div>
 
@@ -114,7 +116,7 @@
 .interest-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
 .interest-count{font-size:14px;color:var(--text-muted);}
 .interest-count strong{color:var(--green-deep);font-weight:700;}
-.interest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.interest-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 200px));gap:18px;}
 .interest-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:box-shadow .18s;}
 .interest-card:hover{box-shadow:var(--shadow-md);}
 .interest-cover{position:relative;aspect-ratio:3/4;overflow:hidden;}
