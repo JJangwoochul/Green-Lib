@@ -19,34 +19,6 @@
 
         <div class="mypage-content">
 
-            <!-- 요약 카드 -->
-            <div class="my-summary">
-                <div class="my-sum-card">
-                    <span class="msc-icon">📚</span>
-                    <span class="msc-num">3</span>
-                    <span class="msc-label">대출중</span>
-                    <a href="${contextPath}/mypage/loan.do" class="msc-link">바로가기 →</a>
-                </div>
-                <div class="my-sum-card">
-                    <span class="msc-icon">⏰</span>
-                    <span class="msc-num">1</span>
-                    <span class="msc-label">반납 임박</span>
-                    <a href="${contextPath}/mypage/loan.do" class="msc-link">바로가기 →</a>
-                </div>
-                <div class="my-sum-card">
-                    <span class="msc-icon">🔖</span>
-                    <span class="msc-num">2</span>
-                    <span class="msc-label">예약중</span>
-                    <a href="${contextPath}/mypage/loan.do" class="msc-link">바로가기 →</a>
-                </div>
-                <div class="my-sum-card">
-                    <span class="msc-icon">❤️</span>
-                    <span class="msc-num">7</span>
-                    <span class="msc-label">관심도서</span>
-                    <a href="${contextPath}/mypage/interest.do" class="msc-link">바로가기 →</a>
-                </div>
-            </div>
-
             <!-- 현재 대출 도서 -->
             <div class="my-section">
                 <div class="my-section-header">

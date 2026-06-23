@@ -79,7 +79,7 @@
     </div>
 
     <div class="detail-back">
-        <a href="${contextPath}/book/search.do" class="btn-outline-sm">← 목록으로</a>
+        <a href="${contextPath}/book/search.do" class="btn-outline-sm">목록으로</a>
     </div>
 </div>
 

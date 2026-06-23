@@ -52,46 +52,6 @@
                 지금 바로 로그인하고 다양한 서비스를 이용해보세요.
             </p>
 
-            <%-- 가입 정보 요약 --%>
-            <div class="complete-info-box">
-                <div class="complete-info-row">
-                    <span class="ci-label">아이디</span>
-                    <span class="ci-val">${userId}</span>
-                </div>
-                <div class="complete-info-row">
-                    <span class="ci-label">이름</span>
-                    <span class="ci-val">${name}</span>
-                </div>
-                <div class="complete-info-row">
-                    <span class="ci-label">이메일</span>
-                    <span class="ci-val">${email}</span>
-                </div>
-                <div class="complete-info-row">
-                    <span class="ci-label">가입일</span>
-                    <span class="ci-val">${joinDate}</span>
-                </div>
-            </div>
-
-            <%-- 혜택 안내 --%>
-            <div class="complete-benefit">
-                <div class="benefit-item">
-                    <span class="benefit-icon">📚</span>
-                    <p class="benefit-text">최대 5권<br>동시 대출</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">🔖</span>
-                    <p class="benefit-text">희망도서<br>신청 가능</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">❤️</span>
-                    <p class="benefit-text">관심도서<br>등록 가능</p>
-                </div>
-                <div class="benefit-item">
-                    <span class="benefit-icon">🎯</span>
-                    <p class="benefit-text">독서 목표<br>관리 가능</p>
-                </div>
-            </div>
-
             <%-- 버튼 --%>
             <div style="display:flex;gap:12px;justify-content:center;margin-top:36px;">
                 <a href="${contextPath}/main/main.do" class="join-btn-prev"
