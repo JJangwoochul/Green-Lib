@@ -22,7 +22,7 @@
                 <p style="font-size:14px;color:var(--text-muted);">
                     총 <strong style="color:var(--green-deep);">4</strong>건의 신청내역
                 </p>
-                <a href="${contextPath}/book/wish.do" class="wish-new-btn">+ 새 도서 신청</a>
+                <a href="${contextPath}/book/wish.do" class="wish-new-btn">새 도서 신청</a>
             </div>
 
             <div class="wish-list">

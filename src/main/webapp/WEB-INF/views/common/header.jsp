@@ -54,7 +54,7 @@
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
                     <%-- 안 읽은 쪽지 배지 (쪽지 있을 때만 표시) --%>
-                    <span class="msg-badge" id="msgBadge">3</span>
+                    <span class="notif-badge" id="msgBadge">3</span>
                 </button>
 
                 <%-- 쪽지 드롭다운 --%>
@@ -67,35 +67,32 @@
                         <li class="msg-drop-item unread">
                             <div class="msg-drop-dot"></div>
                             <div class="msg-drop-body">
-                                <p class="msg-drop-text">📚 [대출안내] 숲의 시간 대출이 완료되었습니다.</p>
+                                <p class="msg-drop-text">[대출안내] 숲의 시간 대출이 완료되었습니다.</p>
                                 <span class="msg-drop-date">2024-04-28</span>
                             </div>
                         </li>
                         <li class="msg-drop-item unread">
                             <div class="msg-drop-dot"></div>
                             <div class="msg-drop-body">
-                                <p class="msg-drop-text">⏰ [반납안내] 지구를 위한 질문 반납예정일이 7일 남았습니다.</p>
+                                <p class="msg-drop-text">[반납안내] 지구를 위한 질문 반납예정일이 7일 남았습니다.</p>
                                 <span class="msg-drop-date">2024-05-02</span>
                             </div>
                         </li>
                         <li class="msg-drop-item unread">
                             <div class="msg-drop-dot"></div>
                             <div class="msg-drop-body">
-                                <p class="msg-drop-text">✅ [희망도서] 파친코 신청이 승인되었습니다.</p>
+                                <p class="msg-drop-text">[희망도서] 파친코 신청이 승인되었습니다.</p>
                                 <span class="msg-drop-date">2024-05-01</span>
                             </div>
                         </li>
                         <li class="msg-drop-item">
                             <div class="msg-drop-dot" style="opacity:0;"></div>
                             <div class="msg-drop-body">
-                                <p class="msg-drop-text" style="color:var(--text-muted);">📖 [반납완료] 마음의 정말 반납이 완료되었습니다.</p>
+                                <p class="msg-drop-text" style="color:var(--text-muted);">[반납완료] 마음의 정말 반납이 완료되었습니다.</p>
                                 <span class="msg-drop-date">2024-04-15</span>
                             </div>
                         </li>
                     </ul>
-                    <a href="${contextPath}/mypage/message.do" class="msg-drop-footer">
-                        쪽지함으로 이동 →
-                    </a>
                 </div>
             </div>
 
@@ -131,7 +128,7 @@
     transition: background .18s;
 }
 .msg-btn:hover { background: var(--green-pale); color: var(--green-deep); }
-.msg-badge {
+.notif-badge {
     position: absolute; top: 2px; right: 2px;
     background: #c0392b; color: #fff;
     font-size: 9px; font-weight: 700;

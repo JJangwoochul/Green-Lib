@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="mypageMenu" value="loan" scope="request"/>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <div class="sub-banner">
